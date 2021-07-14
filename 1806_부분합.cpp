@@ -1,92 +1,34 @@
-#include <iostream>
-
-#include <algorithm>
-
+#include<iostream>
+#include<algorithm>
 using namespace std;
-
-
-
-const int MAX = 100000;
-
-const int INF = 987654321;
-
-
-
-int arr[MAX];
-
-
-
-int main(void)
-
+int arr[100000];
+int main()
 {
-
-	ios_base::sync_with_stdio(0);
-
+	ios::sync_with_stdio(false);
 	cin.tie(0);
-
-	int N, S;
-
-	cin >> N >> S;
-
-
-
-	for (int i = 0; i < N; i++)
-
+	int n, s;
+	cin >> n >> s;
+	int left = 0, high = 0;
+	for (int i = 0; i < n; i++) 
 		cin >> arr[i];
-
-
-
-	int low = 0, high = 0;
-
-	int sum = arr[0];
-
-	int result = INF;
-
-	//투 포인터 알고리즘 적용
-
-	while (low <= high && high < N)
-
-	{
-
-		if (sum < S)
-
+	int sum = arr[0];//5
+	int res = 1000000001;
+	while (left <= high && high < n) {
+		if (sum < s) {
 			sum += arr[++high];
-
-		else if (sum == S)
-
-		{
-
-			result = min(result, (high - low + 1));
-
+		}
+		else if (sum == s) {
+			res = min(res, high - left + 1);
 			sum += arr[++high];
-
 		}
-
-		else if (sum > S)
-
-		{
-
-			result = min(result, (high - low + 1));
-
-			sum -= arr[low++];
-
+		else if (sum > s) {
+			res = min(res, high - left + 1);
+			sum -= arr[left++];
 		}
-
 	}
-
-
-
-	if (result == INF)
-
-		cout << 0 << "\n";
-
-	else
-
-		cout << result << "\n";
-
+	if (res == 1000000001) {
+		cout << 0 << endl;
+	}
+	else cout << res << endl;
 	return 0;
-
 }
-
-
-
