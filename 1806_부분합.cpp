@@ -9,7 +9,7 @@ int main()
 	int n, s;
 	cin >> n >> s;
 	int left = 0, high = 0;
-	for (int i = 0; i < n; i++) 
+	for (int i = 0; i < n; i++)
 		cin >> arr[i];
 	int sum = arr[0];//5
 	int res = 1000000001;
@@ -17,11 +17,7 @@ int main()
 		if (sum < s) {
 			sum += arr[++high];
 		}
-		else if (sum == s) {
-			res = min(res, high - left + 1);
-			sum += arr[++high];
-		}
-		else if (sum > s) {
+		else if (sum >= s) {
 			res = min(res, high - left + 1);
 			sum -= arr[left++];
 		}
