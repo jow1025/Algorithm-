@@ -2,21 +2,21 @@
 using namespace std;
 int main()
 {
-	long long S;
-	cin >> S;
-	int cnt = 1;
-	long long start = 1;
-
-	for (int i = 1; start != S; i++) {
-		if (start >= S) {
-			cnt--;
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	long long s;
+	long long start = 0;
+	int res = 0;
+	cin >> s;
+	for (int i = 1; ; i++) {
+		if (start > s)
+		{
+			res--;
 			break;
 		}
-
-		start += i + 1;
-		cnt++;
+		start += i;
+		res++;
 	}
-
-	cout << cnt;
-
+	cout << res << endl;
+	return 0;
 }
