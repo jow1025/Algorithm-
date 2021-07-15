@@ -20,6 +20,10 @@ int main()
 		else if (sum >= s) {
 			res = min(res, high - left + 1);
 			sum -= arr[left++];
+			if (left > high) {
+				high = left;
+				sum = arr[left];
+			}
 		}
 	}
 	if (res == 1000000001) {
