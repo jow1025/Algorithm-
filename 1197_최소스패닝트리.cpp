@@ -1,4 +1,5 @@
 //c++ 클래스 구현 버전
+
 /*#include <iostream>
 #include<cstdio>
 #include <vector>
@@ -68,7 +69,6 @@ int main(void)
 */
 
 
-
 //c++벡터 버전
 #include<iostream>
 #include<vector>
@@ -95,9 +95,10 @@ void union_parent(int a, int b)
 	//부모를 찾은 뒤 낮은 쪽으로 부모를 설정해줌(합집합)
 	a = find_parent(a);
 	b = find_parent(b);
-	//a > b ? (parent[a] = b) : (parent[b] = a);
-	if (a < b)parent[b] = a;
-	else parent[a] = b;
+	a > b ? (parent[a] = b) : (parent[b] = a);
+
+	//if (a < b)parent[b] = a;
+	//else parent[a] = b;
 }
 int main()
 {
