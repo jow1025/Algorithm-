@@ -1,5 +1,4 @@
 //c++ 클래스 구현 버전
-
 /*#include <iostream>
 #include<cstdio>
 #include <vector>
@@ -69,8 +68,8 @@ int main(void)
 */
 
 
-//c++벡터 버전
 
+//c++벡터 버전
 #include<iostream>
 #include<vector>
 #include<algorithm>
