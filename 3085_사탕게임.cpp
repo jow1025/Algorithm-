@@ -1,63 +1,67 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
+#include<iostream>
+#include<string>
+#include<algorithm>
 using namespace std;
-const int MAX = 50;
-int N;
-string board[MAX];
-int numOfCandy()
+int n;
+string map[51];
+int func();
+int main()
 {
-	int result = 1;
-	//양 옆
-	for (int i = 0; i < N; i++)
-	{
-		int temp = 1;
-		for (int j = 1; j < N; j++)
-			if (board[i][j - 1] == board[i][j])
-				temp++;
-			else
-			{
-				result = max(result, temp);
-				temp = 1;
-			}
-		result = max(result, temp);
-	}
-	//위 아래
-	for (int i = 0; i < N; i++)
-	{
-		int temp = 1;
-		for (int j = 0; j < N - 1; j++)
-			if (board[j + 1][i] == board[j][i])
-				temp++;
-			else
-			{
-				result = max(result, temp);
-				temp = 1;
-			}
-		result = max(result, temp);
-	}
-	return result;
-}
-int main(void)
-{
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> N;
-	for (int i = 0; i < N; i++)
-		cin >> board[i];
-	int result = 0;
-	for (int i = 0; i < N; i++)
-		for (int j = 0; j < N - 1; j++)
-		{
-			//양 옆 swap
-			swap(board[i][j], board[i][j + 1]);
-			result = max(result, numOfCandy());
-			swap(board[i][j], board[i][j + 1]);
-			//위 아래 swap
-			swap(board[j][i], board[j + 1][i]);
-			result = max(result, numOfCandy());
-			swap(board[j][i], board[j + 1][i]);
+	int res = 1;
+	cin >> n;
+	for (int i = 0; i < n; i++) 
+		cin >> map[i];
+	for (int i = 0; i < n; i++) {
+		for (int j = 1; j < n; j++) {
+			//<-> 왼쪽/오른쪽 바꾸고 최대 사탕 개수 확인
+			if(map[i][j-1]!=map[i][j])
+				swap(map[i][j - 1], map[i][j]);
+			int val1 = func();
+			res = max(val1, res);
+			//원상복구
+			swap(map[i][j - 1], map[i][j]);
+
+			//상/하 바꾸고 최대 사탕 개수 확인
+			if(map[j-1][i]!=map[i][j])
+				swap(map[j - 1][i], map[j][i]);
+			int val2=func();
+			res = max(val2, res);
+			swap(map[j - 1][i], map[j][i]);
+			
 		}
-	cout << result << "\n";
+	}
+	cout <<res << endl;
 	return 0;
+}
+int func()
+{
+	int val = 1;
+	//양 옆, 상하좌우를 판단해야함
+
+	//양 옆
+	for (int i = 0; i < n; i++) {
+		int cnt = 1;
+		for (int j = 1; j < n; j++) {
+			if (map[i][j - 1] == map[i][j])
+				cnt++;
+			else {
+				val = max(val, cnt);
+				cnt = 1;
+			}
+		}
+		val = max(val, cnt);
+	}
+	for (int i = 0; i < n; i++) {
+		int cnt = 1;
+		for (int j = 1; j < n; j++) {
+			if (map[j - 1][i] == map[j][i])
+				cnt++;
+			else {
+				val = max(val, cnt);
+				cnt = 1;
+			}
+		}
+		val = max(val, cnt);
+	}
+	return val;
 }
