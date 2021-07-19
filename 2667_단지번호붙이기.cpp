@@ -1,63 +1,47 @@
 #include<iostream>
-#include<queue>
+#include<vector>
 #include<algorithm>
 using namespace std;
-char map[25][25];
-int check[25][25];
-int danji[25 * 25 + 1];
-int dx[4] = { -1,1,0,0 };
+int dx[4] = { -1, 1, 0, 0 };
 int dy[4] = { 0,0,-1,1 };
-int n;
-int cnt;
-int index;
-void bfs(int y, int x);
-
+int n, visited[26][26], cnt;
+string s[26];
+void dfs(int y, int x);
 int main()
 {
+	vector<int>v;
+	ios::sync_with_stdio(false);
+	cin.tie(0);
 	cin >> n;
 	for (int i = 0; i < n; i++)
-		cin >> map[i];
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if (map[i][j] == '1' && check[i][j] == 0)
-			{
-				bfs(i, j);
-				danji[index++] = cnt;
+		cin >> s[i];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (!visited[i][j]&&s[i][j]=='1') {
+				dfs(i, j);
+				v.push_back(cnt);
 				cnt = 0;
+
 			}
 		}
 	}
-	sort(danji, danji + index);
-	cout << index << endl;
-
-	for (int i = 0; i < index; i++)
-		cout << danji[i] << endl;
+	sort(v.begin(), v.end());
+	cout << v.size() << endl;
+	for (int i = 0; i < (int)v.size(); i++) {
+		cout << v[i] << endl;
+	}
+	return 0;
 }
-void bfs(int y, int x)
+void dfs(int y, int x)
 {
-	queue<pair<int, int>>q;
-	q.push({ y,x });
-	check[y][x] = 1;
 	cnt++;
-	while (!q.empty())
-	{
-		y = q.front().first;
-		x = q.front().second;
-		q.pop();
-		for (int i = 0; i < 4; i++)
-		{
-			int ny = y + dy[i];
-			int nx = x + dx[i];
-			if (ny >= 0 && nx >= 0 && ny < n && nx < n) {
-				if (map[ny][nx] == '1' && check[ny][nx] == 0)
-				{
-					q.push({ ny,nx });
-					check[ny][nx] = 1;
-					cnt++;
-				}
-			}
+	visited[y][x] = 1;
+	for (int i = 0; i < 4; i++) {
+		int nx = x+dx[i];
+		int ny = y+dy[i];
+		if(ny<n&&nx<n&&ny>=0&&nx>=0){
+			if(!visited[ny][nx]&&s[ny][nx]=='1')
+			dfs(ny, nx);
 		}
 	}
 }
