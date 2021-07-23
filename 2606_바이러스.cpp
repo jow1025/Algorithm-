@@ -1,37 +1,30 @@
-#include<stdio.h>
-int count;
-int visited[101];
-int array[101][101];
-void dfs(int v, int num);
+#include<iostream>
+using namespace std;
+int n, a, b,num, map[101][101],visited[101],res;
+void dfs(int x);
 int main()
 {
-	int num;//컴퓨터 수
-	int edge;//연결된 컴퓨터 쌍 수(간선수)
-	scanf("%d", &num);
-	scanf("%d", &edge);
-	int num1, num2;
-	for (int i = 1; i <= edge; i++) {
-		scanf("%d %d", &num1, &num2);
-		array[num1][num2] = 1;
-		array[num2][num1] = 1;
-	}
-	dfs(1, num);
-
-	printf("%d\n", count - 1);
-
-}
-
-
-
-void dfs(int v, int num)
-{
-	visited[v] = 1;
-	count++;
-	for (int w = 1; w <= num; w++)
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	
+	cin >> n;
+	cin >> num;
+	for (int i = 1; i <= num; i++)
 	{
-		if (array[v][w] && !visited[w]) {
-			dfs(w, num);
-		}
-
+		cin >> a >> b;
+		map[a][b] = 1, map[b][a] = 1;
 	}
+	dfs(1);
+	cout << res-1 << endl;
+	return 0;
+}
+void dfs(int x)
+{
+	visited[x] = 1;
+	res++;
+	for (int i = 1; i <= n; i++) {
+		if (map[x][i] && !visited[i])
+			dfs(i);
+	}
+	
 }
