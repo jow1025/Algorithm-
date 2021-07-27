@@ -38,11 +38,23 @@ void bfs(int start)
 		//실제로 n=5,k=17일 때 5,4로 출력되는 오류
 		
 		 //1) 맨 처음 도착(x==k일때로)-> min_time갱신, 가짓수res++;
-		 //2) 맨 처음 도착은 아닌데 똑같은 최소시간으로 도착한 경우
-
+		 //2) 이미 도착한 전적이 있고 똑같은 최소시간으로 도착한 경우
 		
+		//2)->1)순으로 진행해야 함
+		
+		if (min_time && min_time == cnt && x == k)
+			res++;
+		if (!min_time && x == k) {
+			min_time = cnt;
+			res++;
+		}
 
-	
+		if (x + 1 <= 100000 && !visited[x + 1])
+			q.push({ x + 1,cnt + 1 });
+		if (x - 1 >= 0 && !visited[x - 1])
+			q.push({ x - 1,cnt + 1 });
+		if (2 * x <= 100000 && !visited[2 * x])
+			q.push({ 2 * x,cnt + 1 });
 		
 	}
 
