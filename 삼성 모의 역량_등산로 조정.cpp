@@ -45,7 +45,7 @@ int main()
 
 void dfs(int y, int x,int height,int idx,int length)
 {
-	
+	visited[y][x] = 1;
 	ans = max(ans, length);
 	for (int i = 0; i < 4; i++) {
 		int ny = y + dy[i];
