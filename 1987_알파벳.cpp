@@ -37,12 +37,11 @@ void dfs(int y, int x, int cnt)
 	for (int i = 0; i < 4; i++) {
 		int ny = y + dy[i];
 		int nx=x + dx[i];
-		if (nx >= 0 && ny >= 0 && ny < r && nx < c) {
-			if (!visited[map[ny][nx] - 'A']) {
+		if (nx >= 0 && ny >= 0 && ny < r && nx < c&&!visited[map[ny][nx]-'A']) {
 				visited[map[ny][nx] - 'A'] = 1;
 				dfs(ny, nx, cnt + 1);
 				visited[map[ny][nx] - 'A'] = 0;
-			}
+			
 		}
 	}
 
