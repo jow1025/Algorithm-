@@ -56,7 +56,7 @@ int main()
 					min_pq.pop();
 				}
 			}
-			
+		//두 힙의 원소 수가 당연히 같아야함 	
 		}
 		if (max_pq.empty() && min_pq.empty())
 			cout << "EMPTY" << endl;
