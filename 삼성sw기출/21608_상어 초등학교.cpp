@@ -45,26 +45,7 @@ void move()
 	}
 	for (int i = 0; i < v.size(); i++)
 	{
-<<<<<<< HEAD
-		
-=======
-		/*int x = v[i].x;
-		int y = v[i].y;
-		int Mass = v[i].m;
-		int Speed = v[i].s;
-		int Dir = v[i].d;
 
-		int Move = Speed % N;
-		int nx = x + dx[Dir] * Move;
-		int ny = y + dy[Dir] * Move;
-		if (nx > N) nx -= N;
-		if (ny > N) ny -= N;
-		if (nx < 1) nx += N;
-		if (ny < 1) ny += N;
-		map[ny][nx].push_back({ ny,nx,Mass,Speed,Dir });
-		v[i].x = nx;
-		v[i].y = ny;*/
->>>>>>> 5ea07f0431fffc2b36bcae2f29b3fa9a291f8667
 		int x = v[i].x;
 		int y = v[i].y;
 		int mass = v[i].m;
