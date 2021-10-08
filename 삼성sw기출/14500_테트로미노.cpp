@@ -38,7 +38,7 @@ void dfs(int y, int x, int cnt, int val)
 			visited[ny][nx] = 0;
 		}
 	}
-	// ¤¿ , ¤Ã, ¤Ç, ¤Ì ¼ø
+	// ã…,ã…“,ã…—,
 	if (y - 1 >= 0 && y + 1 < n && x + 1 < m) {
 		max_val = max(max_val, map[y][x] + map[y - 1][x] + map[y + 1][x] + map[y][x + 1]);
 	}
